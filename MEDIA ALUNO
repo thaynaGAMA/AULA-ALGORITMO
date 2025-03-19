@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <iostream>
+#define MAX_VAGAS 100
+
+using namespace std;
+// Função para calcular a média das notas
+double calcularMedia(double notas[], int quantidade) {
+    double soma = 0.0;
+    for (int i = 0; i < quantidade; i++) {
+        soma += notas[i];
+    }
+    return soma / quantidade;
+}
+
+
+int main() {
+   
+
+int quantidadeAlunos;
+    
+    // Solicitando a quantidade de alunos matriculados//
+    cout << "Digite a quantidade de alunos matriculados (máximo " << MAX_VAGAS << "): ";
+    cin >> quantidadeAlunos;
+    
+    // Garantindo que o número de alunos não exceda o limite
+    if (quantidadeAlunos <= 0 || quantidadeAlunos > MAX_VAGAS) {
+        cout << "Número de alunos inválido!" << endl;
+        return 1;
+    }
+    
+    double notas[quantidadeAlunos];
+    
+    // Lendo as notas dos alunos
+    cout << "Digite as notas dos " << quantidadeAlunos << " alunos:" << endl;
+    for (int i = 0; i < quantidadeAlunos; i++) {
+        cout << "Nota do aluno " << i + 1 << ": ";
+        cin >> notas[i];
+    }
+    
+    // Calculando a média
+    double media = calcularMedia(notas, quantidadeAlunos);
+    
+    // Contando quantos alunos têm notas acima e abaixo da média
+    int acimaMedia = 0, abaixoMedia = 0;
+    for (int i = 0; i < quantidadeAlunos; i++) {
+        if (notas[i] >= media) {
+            acimaMedia++;
+        } else {
+            abaixoMedia++;
+        }
+    }
+    
+    // Exibindo os resultados
+    cout << "\nMédia das notas: " << media << endl;
+    cout << "Quantidade de notas maiores ou iguais à média: " << acimaMedia << endl;
+    cout << "Quantidade de notas inferiores à média: " << abaixoMedia << endl;
+    
+    return 0;
+}
